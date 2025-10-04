@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management (CRUD)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        input, select, button {
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Doctor Management System</h2>
+
+<form id="doctorForm">
+    <input type="text" id="name" placeholder="Doctor Name" required>
+    <input type="text" id="specialist" placeholder="Specialist" required>
+    <select id="availability">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <input type="text" id="contact" placeholder="Contact No" required>
+    <input type="text" id="leave" placeholder="Leave Reason" required>
+    <select id="status">
+        <option value="Present">Present</option>
+        <option value="Not Present">Not Present</option>
+    </select>
+    <select id="surgery">
+        <option value="Success">Success</option>
+        <option value="Pending">Pending</option>
+    </select>
+    <button type="submit">Add Doctor</button>
+</form>
+
+<table id="doctorTable">
+    <thead>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Specialist</th>
+            <th>Availability</th>
+            <th>Contact No</th>
+            <th>Leave-Reason</th>
+            <th>Status</th>
+            <th>Surgery</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Doctor rows go here -->
+    </tbody>
+</table>
+
+<script>
+    const form = document.getElementById("doctorForm");
+    const tableBody = document.querySelector("#doctorTable tbody");
+
+    let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+
+    function renderTable() {
+        tableBody.innerHTML = "";
+        doctors.forEach((doc, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td data-label="Name">${doc.name}</td>
+                <td data-label="Specialist">${doc.specialist}</td>
+                <td data-label="Availability">${doc.availability}</td>
+                <td data-label="Contact">${doc.contact}</td>
+                <td data-label="Leave">${doc.leave}</td>
+                <td data-label="Status">${doc.status}</td>
+                <td data-label="Surgery">${doc.surgery}</td>
+                <td class="actions">
+                    <button onclick="editDoctor(${index})">Edit</button>
+                    <button onclick="deleteDoctor(${index})">Delete</button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+        localStorage.setItem("doctors", JSON.stringify(doctors));
+    }
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const newDoctor = {
+            name: form.name.value,
+            specialist: form.specialist.value,
+            availability: form.availability.value,
+            contact: form.contact.value,
+            leave: form.leave.value,
+            status: form.status.value,
+            surgery: form.surgery.value
+        };
+
+        doctors.push(newDoctor);
+        renderTable();
+        form.reset();
+    });
+
+    function deleteDoctor(index) {
+        doctors.splice(index, 1);
+        renderTable();
+    }
+
+    function editDoctor(index) {
+        const doc = doctors[index];
+        form.name.value = doc.name;
+        form.specialist.value = doc.specialist;
+        form.availability.value = doc.availability;
+        form.contact.value = doc.contact;
+        form.leave.value = doc.leave;
+        form.status.value = doc.status;
+        form.surgery.value = doc.surgery;
+
+        doctors.splice(index, 1); // remove old one
+        renderTable();
+    }
+
+    // On load
+    renderTable();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <style>
+    /* Global */
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow-x: hidden; /* always prevent horizontal scroll */
+      font-family: Arial, sans-serif;
+    }
+
+    .effect {
+      margin: 40px 50px;
+      cursor: pointer;
+    }
+    .effect span { color: blue; }
+    .effect h1:hover { color: blue; }
+    .effect span:hover { color: black; }
+
+    /* Desktop Layout (default) */
+    .user, .doctor, .admin {
+      position: absolute;
+      width: 400px;
+      height: 50px;
+      top: 40px;
+      background: black;
+      border: 2px solid white;
+      border-radius: 20px;
+      font-size: 40px;
+      transition: .2s;
+    }
+    .user { margin: 30% 250px; }
+    .doctor { margin: 30% 950px; }
+    .admin { margin: 30% 1600px; }
+
+    .user a, .doctor a, .admin a {
+      text-decoration: none;
+      color: aliceblue;
+    }
+    .user:hover, .doctor:hover, .admin:hover {
+      color: blue;
+      cursor: pointer;
+      border: 6px solid black;
+      font-size: 30px;
+      transition: .2s;
+    }
+
+    .user-img img {
+      position: absolute;
+      top: 370px;
+      left: 140px;
+      width: 600px;
+    }
+    .doctor-img img {
+      position: absolute;
+      top: 220px;
+      left: 880px;
+      width: 500px;
+    }
+    .admin-img img {
+      position: absolute;
+      top: 100px;
+      left: 1540px;
+      width: 500px;
+    }
+
+    /* Tablet & Mobile Layout */
+    @media (max-width: 1024px) {
+      .welcome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      /* Reset absolute positioning */
+      .user, .doctor, .admin,
+      .user-img img, .doctor-img img, .admin-img img {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        margin: 0 auto !important;
+      }
+
+      /* Make each block image + button */
+      .login-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 350px;
+      }
+
+      /* Buttons */
+      .user, .doctor, .admin {
+        width: 100%;
+        font-size: 22px;
+        height: 55px;
+      }
+
+      /* Images */
+      .user-img img, .doctor-img img, .admin-img img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        display: block;
+      }
+    }
+
+    /* Mobile refinement */
+    @media (max-width: 600px) {
+      .effect h1 { 
+        font-size: 22px; 
+        text-align: center; 
+      }
+      .user, .doctor, .admin {
+        font-size: 20px;
+        height: 50px;
+      }
+      .user-img img, .doctor-img img, .admin-img img {
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="effect">
+    <h1><span>D</span>octor's <span>H</span>ope</h1>
+  </div>
+
+  <div class="welcome">
+    <!-- User -->
+    <div class="login-block">
+      <div class="user-img">
+        <img src="/static/3d-portrait-people.png" alt="User">
+      </div>
+      <button class="user"><a href="{{ url_for('login') }}">User Login</a></button>
+    </div>
+
+    <!-- Doctor -->
+    <div class="login-block">
+      <div class="doctor-img">
+        <img src="/static/portrait-3d-male-doctor-0.png" alt="Doctor">
+      </div>
+      <button class="doctor"><a href="{{ url_for('doclogin') }}">Doctor Login</a></button>
+    </div>
+
+    <!-- Admin -->
+    <div class="login-block">
+      <div class="admin-img">
+        <img src="/static/view-3d-practicing-lawyer.png" alt="Admin">
+      </div>
+      <button class="admin"><a href="{{ url_for('adminlogin') }}">Admin Login</a></button>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+

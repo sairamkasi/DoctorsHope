@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .effect {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+    }
+
+    .effect h1 span {
+      color: blue;
+    }
+
+    .effect h1:hover {
+      color: blue;
+      transition: .3s;
+    }
+
+    .effect button {
+      padding: 8px 16px;
+      border: 3px solid black;
+      border-radius: 15px;
+      background: black;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .effect button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .effect button:hover {
+      background: blue;
+    }
+
+    /* Navbar */
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 24px;
+      color: black;
+    }
+
+    nav ul li a span {
+      color: blue;
+    }
+
+    nav ul li:hover a {
+      color: blue;
+    }
+
+    /* Home Section */
+    .home-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 40px 5%;
+      gap: 20px;
+    }
+
+    .home-img {
+      flex: 1 1 400px;
+      min-width: 260px;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .home-img img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      max-height: 400px;
+      border-radius: 30px;
+      object-fit: cover;
+      transition: transform .3s ease-in-out;
+      box-shadow: 0 4px 24px #0001;
+    }
+
+    .home-img img:hover {
+      transform: scale(1.05);
+    }
+
+    .home-text {
+      flex: 1 1 400px;
+      min-width: 260px;
+      max-width: 100%;
+      margin-left: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .home-text h1 span {
+      font-size: 40px;
+      color: blue;
+      word-break: break-word;
+    }
+
+    .home-text p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .home-text button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 15px;
+      background: black;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .home-text button:hover {
+      background: blue;
+      transform: scale(1.1);
+    }
+
+    /* Counters */
+    .counters {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 50px auto;
+    }
+
+    .counter-box {
+      background: linear-gradient(to right, pink, orange);
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .3s ease-in-out;
+      text-align: center;
+    }
+
+    .counter-box:hover {
+      transform: scale(1.2);
+      color: white;
+    }
+
+    /* Specialists Section */
+    .home-btn {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to right, pink, orange);
+    }
+
+    .home-btn h1 {
+      margin-bottom: 20px;
+    }
+
+    .home-btn .btn {
+      padding: 15px 40px;
+      background: black;
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .3s ease-in-out;
+    }
+
+    .home-btn .btn:hover {
+      background: blue;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 40px 20px;
+      background: linear-gradient(to right, aqua, skyblue);
+      gap: 20px;
+    }
+
+    .footer>div {
+      flex: 1 1 250px;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      transition: .3s ease-in-out;
+    }
+
+    .footer>div:hover {
+      box-shadow: 0 0 20px blue;
+      transform: translateY(-5px);
+    }
+
+    .footer h1 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* Slider */
+    .slides {
+      width: 90%;
+      max-width: 1200px;
+      height: 400px;
+      margin: 60px auto;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 5px solid white;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: #fff;
+    }
+
+    .img-container {
+      display: flex;
+      width: 400%;
+      animation: slides 34s linear infinite;
+    }
+
+    .img-container img {
+      width: 25%;
+      height: 400px;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes slides {
+      0% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-25%);
+      }
+
+      45% {
+        transform: translateX(-25%);
+      }
+
+      50% {
+        transform: translateX(-50%);
+      }
+
+      70% {
+        transform: translateX(-50%);
+      }
+
+      75% {
+        transform: translateX(-75%);
+      }
+
+      95% {
+        transform: translateX(-75%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* Assistant */
+    .assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 280px;
+      padding: 15px;
+      border-radius: 15px;
+      background: #1e1e2f;
+      color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      font-family: Arial, sans-serif;
+      z-index: 9999;
+    }
+
+    .assistant button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      transition: .3s;
+    }
+
+    /* Mic animation */
+    #voice-mic-btn.animating {
+      animation: pulse-mic 1s infinite;
+      box-shadow: 0 0 0 0 #007bff99;
+    }
+
+    @keyframes pulse-mic {
+      0% {
+        box-shadow: 0 0 0 0 #007bff99;
+      }
+
+      70% {
+        box-shadow: 0 0 0 16px #007bff11;
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 #007bff00;
+      }
+    }
+
+    .assistant .intimation {
+      display: block;
+      margin: 8px auto 0 auto;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffd600;
+      letter-spacing: 1px;
+      min-height: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav ul {
+        gap: 30px;
+      }
+
+      .home-section {
+        padding: 25px 4%;
+        gap: 15px;
+      }
+
+      .home-text h1 span {
+        font-size: 32px;
+      }
+
+      .slides {
+        height: 300px;
+      }
+
+      .img-container img {
+        height: 300px;
+      }
+
+      .counter-box {
+        width: 150px;
+        height: 150px;
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .home-section {
+        flex-direction: column;
+        padding: 20px 5%;
+        text-align: center;
+      }
+
+      .home-img img {
+        max-width: 90%;
+        max-height: 250px;
+      }
+
+      .home-text {
+        margin-left: 0;
+        align-items: center;
+      }
+
+      .home-text h1 span {
+        font-size: 24px;
+      }
+
+      .home-text p {
+        font-size: 16px;
+      }
+
+      .slides {
+        height: 200px;
+      }
+
+      .img-container img {
+        height: 200px;
+      }
+
+      .counter-box {
+        width: 110px;
+        height: 110px;
+        font-size: 16px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .home-section {
+        padding: 15px 4%;
+        gap: 10px;
+      }
+
+      .home-img img {
+        max-width: 100%;
+        max-height: 180px;
+      }
+
+      .home-text h1 span {
+        font-size: 18px;
+      }
+
+      .home-text p {
+        font-size: 14px;
+      }
+
+      .slides {
+        height: 140px;
+        margin: 15px auto;
+      }
+
+      .img-container img {
+        height: 140px;
+      }
+
+      .counter-box {
+        width: 80px;
+        height: 80px;
+        font-size: 12px;
+      }
+
+      .assistant {
+        width: 95%;
+        right: 2.5%;
+        bottom: 10px;
+      }
+
+      .footer {
+        padding: 20px 10px;
+      }
+
+      .footer h1 {
+        font-size: 18px;
+      }
+
+      .footer ul li {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="effect">
+    <h1>Doctors<span>Hope</span></h1>
+    <button><a href="#">Login</a></button>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('home') }}"><span>Home</span></a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('specialist') }}">Specialists</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('appointment') }}">Appointment</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section class="home-section">
+    <div class="home-img">
+      <img
+        src="/static/medical-good-team-hospital-staff-doctors-nurse-illustration/1604.m00.i125.n014.S.c12.400488715 Medical team. Hospital staff vector illustration.jpg"
+        alt="hospital">
+    </div>
+    <div class="home-text">
+      <h1>Welcome to <span>DoctorsHope</span></h1>
+      <p>Your trusted healthcare partner with 24/7 support.</p>
+      <a href="{{ url_for('appointment') }}"><button>Book Appointment</button></a>
+    </div>
+  </section>
+
+  <!-- Counters -->
+  <div class="counters">
+    <div class="counter-box">500+<br>Patients</div>
+    <div class="counter-box">50+<br>Doctors</div>
+    <div class="counter-box">20+<br>Departments</div>
+  </div>
+
+  <!-- Slider -->
+  <div class="slides">
+    <div class="slider-bg-title">
+      <span class="blue">D</span><span class="black">octors </span><span class="blue">H</span><span
+        class="black">ope</span>
+    </div>
+    <div class="img-container">
+      <img src="/static/OIP (1).webp" alt="slide1">
+      <img src="/static/OIP.webp" alt="slide2">
+      <img
+        src="/static/medical-staff-template-with-doctor-nurse-assistant-reception-clinic-flat-style-vector-illustration_979495-71308.jpg"
+        alt="slide3">
+      <img
+        src="/static/medical-staff-template-with-doctor-nurse-assistant-reception-clinic-flat-style-vector-illustration_979495-71320.jpg"
+        alt="slide4">
+    </div>
+  </div>
+
+  <!-- Specialists Section -->
+  <div class="home-btn">
+    <h1>Meet Our Specialists</h1>
+    <!-- ✅ Fixed: linked button to specialist.html -->
+    <a href="{{ url_for('specialist') }}">
+      <button class="btn">View Doctors</button>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>
+      <h1>Quick Links</h1>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('specialist') }}">Doctors</a></li>
+        <li><a href="{{ url_for('appointment') }}">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <h1>Contact</h1>
+      <ul>
+        <li>Email: info@doctorshope.com</li>
+        <li>Phone: +91 9876543210</li>
+      </ul>
+    </div>
+    <div>
+      <h1>Follow Us</h1>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Voice AI Assistant -->
+  <div class="assistant" id="ai-assistant">
+    <p><strong>AI Voice Assistant</strong></p>
+    <span id="intimation" class="intimation"></span>
+    <p id="voice-status">Click the mic and speak...</p>
+    <button id="voice-mic-btn"
+      style="font-size:22px; background:#007bff; color:#fff; border:none; border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; margin:0 auto;">
+      <span id="mic-icon">🎤</span>
+    </button>
+    <div id="voice-response" style="margin-top:12px; font-size:15px; color:#fff;"></div>
+  </div>
+
+  <!-- Voice Assistant Script -->
+  <script>
+    const micBtn = document.getElementById('voice-mic-btn');
+    const statusText = document.getElementById('voice-status');
+    const responseDiv = document.getElementById('voice-response');
+    const micIcon = document.getElementById('mic-icon');
+    const intimation = document.getElementById('intimation');
+    let recognizing = false;
+    let recognition;
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'en-US';
+        speech.rate = 1;
+        speech.pitch = 1;
+        speechSynthesis.speak(speech);
+      }
+    }
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = "en-US";
+
+      recognition.onstart = () => {
+        recognizing = true;
+        statusText.innerText = "Listening...";
+        micIcon.textContent = "🔴";
+        micBtn.classList.add("animating");
+        intimation.innerText = "Speak Now";
+      };
+
+      recognition.onend = () => {
+        recognizing = false;
+        statusText.innerText = "Click the mic and speak...";
+        micIcon.textContent = "🎤";
+        micBtn.classList.remove("animating");
+        intimation.innerText = "";
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        responseDiv.innerText = "You said: " + transcript;
+
+        if (transcript.includes("hello")) {
+          speak("Hello! How can I help you today?");
+        } else if (transcript.includes("appointment")) {
+          speak("Redirecting you to the appointment page.");
+          window.location.href = "{{ url_for('appointment') }}";
+        } else if (transcript.includes("doctor") || transcript.includes("view doctors") || transcript.includes("specialist")) {
+          speak("Here are our doctors.");
+          window.location.href = "{{ url_for('specialist') }}";
+        } else if (transcript.includes("contact")) {
+          speak("Opening contact page.");
+          window.location.href = "{{ url_for('contact') }}";
+        } else {
+          speak("Sorry, I didn't understand that.");
+        }
+      };
+    } else {
+      statusText.innerText = "Voice recognition not supported in this browser.";
+      micBtn.disabled = true;
+    }
+
+    micBtn.addEventListener("click", () => {
+      if (recognizing) {
+        recognition.stop();
+        recognizing = false;
+        statusText.innerText = "Click the mic and speak...";
+        micIcon.textContent = "🎤";
+        micBtn.classList.remove("animating");
+        intimation.innerText = "";
+      } else {
+        recognition.start();
+      }
+    });
+  </script>
+</body>
+
+</html>

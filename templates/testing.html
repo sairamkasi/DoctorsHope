@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header */
+    .effect {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .effect h1 span,
+    .effect h2 span {
+      color: blue;
+    }
+    .effect h1:hover {
+      color: blue;
+    }
+    .effect button {
+      margin-top: 15px;
+      padding: 8px 20px;
+      font-size: 18px;
+      border: 2px solid black;
+      border-radius: 15px;
+      background: black;
+    }
+    .effect button a {
+      text-decoration: none;
+      color: white;
+    }
+    .effect button:hover {
+      background: blue;
+      transition: 0.3s;
+    }
+
+    /* Welcome Text */
+    .appointment-text {
+      text-align: center;
+      margin: 20px;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .appointment-text span {
+      color: blue;
+    }
+
+    /* Layout Wrapper */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      gap: 30px;
+    }
+
+    /* Login Form */
+    .login-form {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      border: 2px solid black;
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .login-form label {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: none;
+      border-bottom: 2px solid black;
+      background: transparent;
+    }
+    .login-form .checkbox-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .login-form .checkbox-row input {
+      margin-right: 10px;
+    }
+    .login-form .input-4 {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background: black;
+      color: white;
+      border: 2px solid white;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .login-form .input-4:hover {
+      background: linear-gradient(blue, aqua);
+      font-size: 17px;
+    }
+
+    /* Image */
+    .login-img {
+      flex: 1;
+      min-width: 250px;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+    }
+    .login-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .appointment-text {
+        font-size: 1rem;
+      }
+      .login-form {
+        padding: 20px;
+      }
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .login-img {
+        order: -1;
+      }
+      .appointment-text {
+        font-size: 0.95rem;
+        margin: 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      .effect h1 {
+        font-size: 1.5rem;
+      }
+      .effect h2 {
+        font-size: 1rem;
+      }
+      .appointment-text {
+        font-size: 0.9rem;
+      }
+      .login-form {
+        padding: 15px;
+      }
+      .login-form label {
+        font-size: 16px;
+      }
+      .login-form input {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="effect">
+    <h1><span>D</span>octor's <span>H</span>ope</h1>
+    <h2><span>N</span>ew <span>U</span>ser!</h2>
+    <button><a href="{{ url_for('welcome') }}">Back</a></button>
+  </div>
+
+  <div class="appointment-text">
+    <h1><span>W</span>ELCOME <span>T</span>O <span>D</span>OCTORS <span>H</span>OPE <span>A</span>PPOINTMENT</h1>
+  </div>
+
+  <div class="container">
+    <!-- Login Form -->
+    <div class="login-form">
+      <form action="{{ url_for('adminlogin') }}" method="post">
+        <label for="username">Name</label>
+        <input type="text" id="username" name="UserName" placeholder="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="Password" placeholder="password" required>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember password!</label>
+        </div>
+
+        <input type="submit" class="input-4" value="Login">
+      </form>
+    </div>
+
+    <!-- Image -->
+    <div class="login-img">
+      <img src="/static/health-professional-team-concept-illustration/3625753.jpg" alt="Healthcare Team">
+    </div>
+  </div>
+
+</body>
+</html>

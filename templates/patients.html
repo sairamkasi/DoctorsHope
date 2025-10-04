@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patients - DoctorsHope</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
+        .container { max-width: 1100px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 30px; }
+        h1 { color: #0072ff; text-align: center; margin-bottom: 30px; }
+        .search-box { text-align: right; margin-bottom: 20px; }
+        .search-box input {
+            padding: 8px 14px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px 10px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background: #0072ff; color: #fff; }
+        tr:hover { background: #f0f8ff; }
+        @media (max-width: 700px) {
+            .container { padding: 10px; }
+            th, td { padding: 8px 4px; font-size: 14px; }
+        }
+    </style>
+    <script>
+    function searchPatients() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            let text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Patients List</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="searchPatients()" placeholder="Search patients...">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Second Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Time</th>
+                    <th>Emergency</th>
+                    <th>Token</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.first_name }}</td>
+                    <td>{{ patient.second_name }}</td>
+                    <td>{{ patient.date_of_birth }}</td>
+                    <td>{{ patient.gender }}</td>
+                    <td>{{ patient.email }}</td>
+                    <td>{{ patient.contact }}</td>
+                    <td>{{ patient.time }}</td>
+                    <td>{{ 'Yes' if patient.emergency else 'No' }}</td>
+                    <td>{{ patient.queue_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

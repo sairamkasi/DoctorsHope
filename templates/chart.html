@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Chart</title>
+</head>
+<style>
+    .body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        .body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .effect{
+            margin: 40px 20px;
+            cursor: pointer;
+        }
+        .effect span{
+            color: blue;
+        }
+        .effect h1:hover{
+            color: blue;
+
+
+        }
+        .effect span:hover{
+            color: black;
+        }
+        .effect button{
+            margin-left: 20px;
+            width: 150px;
+            height: 30px;
+            border: 3px solid black;
+            border-radius: 15px;
+            color: white;
+            background: white;
+            font-size: 20px;
+            
+        }
+        .effect button a{
+            text-decoration: none;
+        }
+        .effect button:hover{
+            background: blue;
+            color: aliceblue;
+            transition: .2s;
+
+
+        }
+        .appointment-text{ 
+            margin-left: 35%;
+            margin-top: 0;
+            position: absolute;
+            font-size: 25px;
+            top: 30px;
+            cursor: pointer;
+        }
+        .input-field{
+            margin: 60px 100px;
+            border: 6px solid black;
+            height:800px;
+            background: skyblue;
+            cursor: pointer;
+        }
+        
+        .input{
+            margin-left: 80px;
+            margin-top: 30px;
+            width: 250px;
+            height: 30px;
+            color:black;
+            font-size: 15px;
+            border: 2px solid white;
+            background: aquamarine;
+            cursor: pointer;
+        }
+        .input-1{
+            font-size: 20px;
+            position: absolute;
+            cursor: pointer;
+        }
+        .table{
+            margin-left:80px ;
+            margin-top: 30px;
+            width: 1550px;
+            background: aquamarine;
+            border: 4px solid black;
+            cursor: pointer;
+        }
+        .input-2{
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .h1{
+            margin: 10px 40px;
+            color:blue;
+        }
+
+</style>
+<body>
+    <div class="effect">
+                <h1><span>D</span>octor's <span>H</span>ope</h1>
+                <button><a href="/index.html">Back</a></button>
+            </div>
+            <div class="appointment-text">
+                <h1><span style="color: blue;">W</span>ELCOME <span style="color: blue;">T</span>O <span style="color: blue;">D</span>OCTORS <span style="color: blue;">H</span>OPE</h1>
+            </div>
+    <h1 class="h1">Doctor's Data:</h1>
+    <form action="" method="Post" name="chart" class="input-field"><br>
+       <label class="input-1">Surname:</label>  <input type="text" name="surname" class="input">
+       <label class="input-1">Name:</label> <input type="text" name="name" class="input">
+        <label class="input-1">Gender:</label> <input type="text" name="gender" class="input">
+       <label class="input-1">Specialist:</label> <input type="text" name="specialist" class="input">
+        <label class="input-1">Address:</label> <input type="text" name="address" class="input">
+        <label class="input-1">Mobile:</label> <input type="number" name="mobile" class="input"><br><br>
+        <input type="button" name="add" value="Add Data" class="input" onClick="addDoctor();"><hr>
+
+        <table id="tbl" class="table" border="1">
+            <thead>
+                <th class="input-2">Surname</th>
+                <th class="input-2">Name</th>
+                <th class="input-2">Gender</th>
+                <th class="input-2">Specialist</th>
+                <th class="input-2">Address</th>
+                <th class="input-2">Mobile</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </form>
+
+
+    <script type="text/javascript">
+
+    function addDoctor()
+    {
+        var surname=document.chart.surname.value;
+        var name=document.chart.name.value;
+        var gender=document.chart.gender.value;
+        var specialist=document.chart.specialist.value;
+        var address=document.chart.address.value;
+        var mobile=document.chart.mobile.value;
+
+        var tr =document.createElement('tr');  
+
+        var td1 = tr.appendChild(document.createElement('td'));
+         var td2 = tr.appendChild(document.createElement('td'));
+          var td3 = tr.appendChild(document.createElement('td'));
+           var td4 = tr.appendChild(document.createElement('td'));
+            var td5 = tr.appendChild(document.createElement('td'));
+            var td6 = tr.appendChild(document.createElement('td'));
+
+            td1.innerHTML=surname;
+            td2.innerHTML=name;
+            td3.innerHTML=gender;
+            td4.innerHTML=specialist;
+            td5.innerHTML=address;
+            td6.innerHTML=mobile;
+
+            document.getElementById("tbl").appendChild(tr);
+            }
+     
+    </script>
+
+</body>
+</html>

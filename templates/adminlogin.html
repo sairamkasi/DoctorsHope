@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-login</title>
+    <style>
+        /* === Desktop Styles (your original code unchanged) === */
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .effect{
+            margin: 40px 100px;
+            cursor: pointer;
+            width: 500px;
+            position: absolute;
+        }
+        .effect span{ color: blue; }
+        .effect h1:hover{ color: blue; }
+        .effect h1{ width: 500px; cursor: pointer; }
+        .effect span:hover{ color: black; cursor: pointer; }
+        .effect button{
+            margin-left: 20px;
+            width: 150px;
+            height: 30px;
+            border: 3px solid black;
+            border-radius: 15px;
+            background: black;
+            font-size: 20px;
+        }
+        .effect button a{ text-decoration: none; color: white; }
+        .effect button:hover{ background: blue; transition: .2s; }
+        .login-form{
+            position: absolute;
+            margin-left:65%;
+            margin-top: 5%;
+            top: 30px;
+            width: 600px;
+            height: 800px;
+            border: 5px solid black;
+            background: transparent;
+            backdrop-filter: blur(30px);
+        }
+        .login-form .form{ margin: 40px 40px; }
+        .login-img{ margin: 10px 100px; }
+        .login-img img{
+            width: 1000px;
+            height: 1000px;
+            position: absolute;
+            top: 10%;
+            left: 15%;
+        }
+        .login-form .form .input-1,
+        .login-form .form .input-2{
+            margin: 30px 40px;
+            border: none;
+            border-bottom: 1px solid black;
+            width: 450px;
+            background: transparent;
+            font-size: 30px;
+        }
+        .login-form .form .input-4{
+            width: 380px;
+            height: 39px;
+            margin: 10px 60px;
+            background: black;
+            color: white;
+            font-size: 30px;
+            border-radius: 18px;
+            border: 2px solid white;
+            transition: .2s;
+        }
+        .login-form .form .input-4:hover{
+            font-size: 20px;
+            background: linear-gradient(blue,aqua);
+        }
+        .appointment-text{
+            position: absolute;
+            top: 30px;
+            left:15%;
+            margin-left:1000px;
+            width: 1000px;
+        }
+
+        /* === Tablet & Mobile Responsive === */
+        @media (max-width: 1024px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .effect {
+                position: relative;
+                margin: 20px auto;
+                text-align: center;
+            }
+            .appointment-text {
+                position: relative;
+                margin: 20px auto;
+                width: 90%;
+                text-align: center;
+            }
+            .login-img {
+                order: 1;
+                margin: 10px auto;
+                text-align: center;
+                position: relative;
+            }
+            .login-img img {
+                width: 100%;
+                height: auto;
+                max-width: 500px;
+                position: relative;
+            }
+            .login-form {
+                order: 2;
+                position: relative;
+                margin: 20px auto;
+                width: 90%;
+                height: auto;
+            }
+            .login-form .form { margin: 20px; }
+            .login-form .form .input-1,
+            .login-form .form .input-2 {
+                width: 100%;
+                font-size: 20px;
+            }
+            .login-form .form .input-4 {
+                width: 100%;
+                font-size: 20px;
+                margin: 10px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .effect h1 { font-size: 24px; }
+            .appointment-text h1 { font-size: 18px; }
+            .login-form { padding: 10px; }
+            .login-form .form .input-1,
+            .login-form .form .input-2 { font-size: 18px; }
+            .login-form .form .input-4 {
+                font-size: 18px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="effect">
+        <h1><span>D</span>octor's <span>H</span>ope</h1>
+        <h2><span>N</span>ew <span>U</span>ser!</h2>
+        <button><a href="{{ url_for('welcome') }}">Back</a></button>
+    </div>
+
+    <div class="appointment-text">
+        <h1><span style="color: blue;">W</span>ELCOME TO DOCTORS HOPE APPOINTMENT</h1>
+    </div>
+
+    <div class="login-img">
+        <img src="/static/health-professional-team-concept-illustration/3625753.jpg">
+    </div>
+
+    <div class="login-form">
+        <form action="{{ url_for('adminlogin') }}" method="post" class="form">
+            <label style="font-size: 30px;">Name</label>
+            <input type="text" name="UserName" class="input-1" placeholder="username" required>
+            <label style="font-size: 30px;">Password</label>
+            <input type="password" name="Password" class="input-2" placeholder="password" required><br><br>
+            <input type="submit" class="input-4" value="Login">
+        </form>
+    </div>
+</body>
+</html>

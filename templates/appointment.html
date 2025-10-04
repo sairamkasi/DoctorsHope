@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appointment</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .effect {
+            margin: 40px auto 0 auto;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+
+        .effect span {
+            color: blue;
+        }
+
+        .effect h1:hover {
+            color: blue;
+        }
+
+        .effect span:hover {
+            color: black;
+        }
+
+        .appointment-text {
+            margin: 24px auto 0 auto;
+            font-size: 25px;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* ---- Desktop Layout ---- */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 1400px;
+        }
+
+        .appointment-img img {
+            width: 700px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .appointment-form {
+            flex: 1;
+            max-width: 600px;
+            padding: 32px 24px;
+            border: none;
+            border-radius: 24px;
+            background: linear-gradient(120deg, #e0f7fa 60%, #b2ebf2 100%);
+            box-shadow: 0 8px 32px rgba(0, 114, 255, 0.12);
+        }
+
+        .appointment-form label {
+            font-size: 18px;
+            margin: 12px 0 6px;
+            display: block;
+        }
+
+        .appointment-form input {
+            font-size: 16px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            background-color: #f0ffff;
+            height: 36px;
+            border: 2px solid #b2ebf2;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px 12px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .appointment-form .submit-btn,
+        .chart {
+            width: 180px;
+            height: 48px;
+            border: none;
+            border-radius: 24px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+
+        .appointment-form .submit-btn:hover,
+        .chart:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            box-shadow: 0 6px 20px rgba(0, 114, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ---- Tablet ---- */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .appointment-img {
+                display: none;
+            }
+
+            .appointment-form {
+                width: 80vw;
+            }
+        }
+
+        /* ---- Mobile ---- */
+        @media (max-width: 600px) {
+            .appointment-img {
+                display: none;
+            }
+
+            .appointment-form {
+                width: 95vw;
+                padding: 16px;
+            }
+
+            .appointment-form label {
+                font-size: 14px;
+            }
+
+            .appointment-form input {
+                font-size: 14px;
+                height: 30px;
+            }
+
+            .appointment-form .submit-btn,
+            .chart {
+                width: 140px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="effect">
+        <h1>Book Your <span>Appointment</span></h1>
+    </div>
+
+    <div class="appointment-text">
+        <p>Fill out the form below to schedule your appointment with us.</p>
+    </div>
+
+    <div class="main-content">
+        <!-- Image (Visible on desktop only) -->
+        <div class="appointment-img">
+            <img src="/static/organic-flat-doctors-nurses-with-stethoscope/5173348.jpg" alt="appointment banner">
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-form">
+            <form class="forms">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date">
+
+                <label for="time">Preferred Time</label>
+                <input type="time" id="time">
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn"><span>Submit</span></button>
+                    <button type="button" class="chart"><span>Cancel</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

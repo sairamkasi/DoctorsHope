@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Chart</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .tables {
+            margin: auto;
+            width: 90%;
+            max-width: 1300px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 2px solid #000;
+            text-align: center;
+        }
+
+        th {
+            background-color: yellow;
+        }
+
+        tr:hover {
+            background-color: lightblue;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 10px;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Doctor's Chart:</h1>
+
+    <div class="tables">
+        <table id="doctorChart">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Specialist</th>
+                    <th>Availability</th>
+                    <th>Contact No</th>
+                    <th>Leave-Reason</th>
+                    <th>Status</th>
+                    <th>Surgery</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically inserted -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const tableBody = document.querySelector("#doctorChart tbody");
+        const doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+
+        doctors.forEach(doc => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td data-label="Name">${doc.name}</td>
+                <td data-label="Specialist">${doc.specialist}</td>
+                <td data-label="Availability">${doc.availability}</td>
+                <td data-label="Contact">${doc.contact}</td>
+                <td data-label="Leave">${doc.leave}</td>
+                <td data-label="Status">${doc.status}</td>
+                <td data-label="Surgery">${doc.surgery}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
+
+       
+       
+        
+        
+       

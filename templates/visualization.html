@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f7fb; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(23, 28, 63, 0.06);
+    }
+    .card canvas { width: 100% !important; height: 320px !important; }
+  </style>
+</head>
+<body>
+  <h1>📊 Dashboard — Welcome {{ username }}</h1>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Patients by Year of Birth</h3>
+      <canvas id="patientChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Doctors by Year of Birth</h3>
+      <canvas id="doctorChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Appointments by Time Slot</h3>
+      <canvas id="apptTimeChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Appointments by Gender</h3>
+      <canvas id="apptGenderChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Embed server-side Python lists into JS variables using Flask's tojson filter
+    const patientLabels = {{ patient_labels | tojson | safe }};
+    const patientData   = {{ patient_data   | tojson | safe }};
+
+    const doctorLabels  = {{ doctor_labels  | tojson | safe }};
+    const doctorData    = {{ doctor_data    | tojson | safe }};
+
+    const apptTimeLabels = {{ appt_time_labels | tojson | safe }};
+    const apptTimeData   = {{ appt_time_data   | tojson | safe }};
+
+    const apptGenderLabels = {{ appt_gender_labels | tojson | safe }};
+    const apptGenderData   = {{ appt_gender_data   | tojson | safe }};
+
+    // Simple helper to create charts only when the canvas exists
+    function safeCreateChart(ctxId, config) {
+      const el = document.getElementById(ctxId);
+      if (!el) return;
+      new Chart(el, config);
+    }
+
+    safeCreateChart("patientChart", {
+      type: "bar",
+      data: {
+        labels: patientLabels,
+        datasets: [{ label: "Patients", data: patientData, backgroundColor: "rgba(54,162,235,0.6)" }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    safeCreateChart("doctorChart", {
+      type: "line",
+      data: {
+        labels: doctorLabels,
+        datasets: [{ label: "Doctors", data: doctorData, borderColor: "rgba(255,99,132,1)", fill: false }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    safeCreateChart("apptTimeChart", {
+      type: "bar",
+      data: {
+        labels: apptTimeLabels,
+        datasets: [{ label: "Appointments", data: apptTimeData, backgroundColor: "rgba(255,206,86,0.6)" }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    safeCreateChart("apptGenderChart", {
+      type: "pie",
+      data: {
+        labels: apptGenderLabels,
+        datasets: [{ data: apptGenderData, backgroundColor: ["rgba(75,192,192,0.6)","rgba(153,102,255,0.6)","rgba(255,99,132,0.6)"] }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  </script>
+</body>
+</html>

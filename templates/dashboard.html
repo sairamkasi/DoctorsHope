@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - DoctorsHope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; display: flex; height: 100vh; overflow: hidden; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: #1e1e2f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      min-height: 100vh;
+      z-index: 100;
+    }
+    .sidebar h2 { margin-bottom: 30px; text-align: center; }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+    .sidebar a:hover, .sidebar a.active { background: blue; }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      background: #f4f6f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar */
+    .topbar {
+      background: white;
+      padding: 15px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar h1 span { color: blue; }
+
+    /* Content Wrapper */
+    .content {
+      padding: 20px;
+    }
+
+    /* Reuse your home CSS inside dashboard */
+    .home-section { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+    .home-img { flex: 1 1 400px; }
+    .home-img img { width: 100%; max-height: 400px; border-radius: 20px; object-fit: cover; transition: transform .3s; }
+    .home-img img:hover { transform: scale(1.05); }
+    .home-text { flex: 1 1 400px; }
+    .home-text h1 span { font-size: 32px; color: blue; }
+    .home-text p { font-size: 18px; margin-top: 10px; }
+    .home-text button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border-radius: 15px;
+      background: black;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .home-text button:hover { background: blue; transform: scale(1.1); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      .sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
+      .sidebar a { flex: 1; text-align: center; }
+      .topbar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+  <a href="{{ url_for('home') }}" class="active">🏠 Home</a>
+  <a href="{{ url_for('adddoctr') }}">👨‍⚕️ Doctors</a>
+  <a href="{{ url_for('patients') }}">🧑‍🤝‍🧑 Patients</a>
+  <a href="{{ url_for('appointment') }}">📅 Appointments</a>
+  <a href="{{ url_for('visualization') }}">📊 Visualization</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Top Bar -->
+    <div class="topbar">
+      <h1>Doctors<span>Hope</span></h1>
+      <button style="padding:8px 16px; border:none; border-radius:8px; background:blue; color:white; cursor:pointer;">Logout</button>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="content">
+      <!-- Your Home Page inside Dashboard -->
+      <section class="home-section">
+        <div class="home-img">
+          <img src="https://via.placeholder.com/600x400" alt="hospital">
+        </div>
+        <div class="home-text">
+          <h1>Welcome to <span>DoctorsHope</span></h1>
+          <p>Your trusted healthcare partner with 24/7 support.</p>
+          <button>Book Appointment</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
